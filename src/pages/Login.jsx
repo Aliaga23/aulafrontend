@@ -32,12 +32,10 @@ export default function Login() {
         return;
       }
 
-      // Guardar token y usuario
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
 
-      // Redirigir al dashboard o home
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       setError('Error de conexión. Intenta de nuevo.');
       setLoading(false);

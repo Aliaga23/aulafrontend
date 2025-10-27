@@ -25,7 +25,9 @@ export default function Usuarios() {
     ci: '',
     telefono: '',
     sexo: '',
-    direccion: ''
+    direccion: '',
+    especialidad: '',
+    fechacontrato: ''
   });
 
   useEffect(() => {
@@ -117,7 +119,8 @@ export default function Usuarios() {
         payload.especialidad = formData.especialidad || null;
         payload.fechacontrato = formData.fechacontrato || new Date().toISOString().split('T')[0];
       } else {
-        payload.fecha_contrato = formData.fecha_contrato || new Date().toISOString().split('T')[0];
+        // Para administradores, también usar fechacontrato (sin guión bajo)
+        payload.fechacontrato = formData.fechacontrato || new Date().toISOString().split('T')[0];
       }
 
       const response = await fetch(url, {
@@ -180,8 +183,7 @@ export default function Usuarios() {
       sexo: usuario.sexo || '',
       direccion: usuario.direccion || '',
       especialidad: usuario.especialidad || '',
-      fechacontrato: usuario.fechacontrato || '',
-      fecha_contrato: usuario.fecha_contrato || ''
+      fechacontrato: usuario.fechacontrato || ''
     });
     setShowModal(true);
   };
@@ -200,8 +202,7 @@ export default function Usuarios() {
       sexo: '',
       direccion: '',
       especialidad: '',
-      fechacontrato: '',
-      fecha_contrato: ''
+      fechacontrato: ''
     });
   };
 
@@ -216,11 +217,6 @@ export default function Usuarios() {
     
     return matchesSearch && matchesRole;
   });
-
-  const getRoleName = (idrol) => {
-    const role = roles.find(r => r.idrol === idrol);
-    return role?.nombre || 'Sin rol';
-  };
 
   const getInitials = (nombre, apellido) => {
     return `${nombre?.charAt(0) || ''}${apellido?.charAt(0) || ''}`.toUpperCase();

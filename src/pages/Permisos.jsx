@@ -6,7 +6,7 @@ const API_URL = 'https://aulabackend-production.up.railway.app';
 
 export default function Permisos() {
   const [permisos, setPermisos] = useState([]);
-  const [roles, setRoles] = useState([]);
+  const [, setRoles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [editingPermiso, setEditingPermiso] = useState(null);

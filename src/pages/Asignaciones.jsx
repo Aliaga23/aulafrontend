@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import DashboardLayout from '../components/DashboardLayout';
-import { Plus, Edit, Trash2, Search, X, AlertTriangle, ClipboardList, GraduationCap, BookOpen } from 'lucide-react';
+import { Plus, Trash2, Search, X, AlertTriangle, GraduationCap, BookOpen } from 'lucide-react';
 
 const API_URL = 'https://aulabackend-production.up.railway.app';
 
@@ -14,7 +14,6 @@ export default function Asignaciones() {
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [asignacionToDelete, setAsignacionToDelete] = useState(null);
-  const [editingAsignacion, setEditingAsignacion] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedMateria, setSelectedMateria] = useState('');
   const [formData, setFormData] = useState({
@@ -137,18 +136,6 @@ export default function Asignaciones() {
     }
   };
 
-  const handleEdit = (asignacion) => {
-    setEditingAsignacion(asignacion);
-    setFormData({
-      coddocente: asignacion.coddocente || '',
-      idgrupo: asignacion.idgrupo || '',
-      idcarrera: asignacion.idcarrera || '',
-      sigla: asignacion.sigla || '',
-      idgestion: asignacion.idgestion || ''
-    });
-    setShowModal(true);
-  };
-
   const confirmDelete = (asignacion) => {
     setAsignacionToDelete(asignacion);
     setShowDeleteModal(true);
@@ -168,7 +155,6 @@ export default function Asignaciones() {
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setEditingAsignacion(null);
     setSelectedMateria('');
     setFormData({
       coddocente: '',
